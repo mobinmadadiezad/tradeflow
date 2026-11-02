@@ -3,7 +3,16 @@ import type { Trade } from "@/types/trade";
 const STORAGE_KEY = "tradeflow_trades";
 const TRADES_UPDATED_EVENT = "tradeflow:trades-updated";
 
-// دریافت تمام معاملات
+// سازگاری با معاملات قدیمی
+function normalizeTrade(trade: Partial<Trade>): Trade {
+  return {
+    ...trade,
+    commission: Number(trade.commission ?? 0),
+    swap: Number(trade.swap ?? 0),
+  } as Trade;
+}
+
+// دریافت و استانداردسازی تمام معاملات
 export function getTrades(): Trade[] {
   if (typeof window === "undefined") return [];
 
@@ -12,7 +21,11 @@ export function getTrades(): Trade[] {
 
     if (!storedTrades) return [];
 
-    return JSON.parse(storedTrades) as Trade[];
+    const parsedTrades = JSON.parse(storedTrades);
+
+    if (!Array.isArray(parsedTrades)) return [];
+
+    return parsedTrades.map((trade) => normalizeTrade(trade));
   } catch (error) {
     console.error("Error loading trades:", error);
     return [];
@@ -24,7 +37,9 @@ export function saveTrades(trades: Trade[]): void {
   if (typeof window === "undefined") return;
 
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
+    const normalizedTrades = trades.map((trade) => normalizeTrade(trade));
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizedTrades));
 
     window.dispatchEvent(new Event(TRADES_UPDATED_EVENT));
   } catch (error) {
@@ -35,12 +50,14 @@ export function saveTrades(trades: Trade[]): void {
 // افزودن معامله جدید
 export function addTrade(trade: Trade): void {
   const trades = getTrades();
-  saveTrades([trade, ...trades]);
+
+  saveTrades([normalizeTrade(trade), ...trades]);
 }
 
 // حذف معامله
 export function deleteTrade(id: string): void {
   const trades = getTrades();
+
   saveTrades(trades.filter((trade) => trade.id !== id));
 }
 
@@ -56,11 +73,26 @@ export function subscribeTrades(callback: () => void) {
 }
 
 // دریافت Snapshot معاملات
-export function getTradesSnapshot(): string | null {
-  return localStorage.getItem(STORAGE_KEY);
+export function getTradesSnapshot(): string {
+  if (typeof window === "undefined") return "[]";
+
+  try {
+    const storedTrades = localStorage.getItem(STORAGE_KEY);
+
+    if (!storedTrades) return "[]";
+
+    const parsedTrades = JSON.parse(storedTrades);
+
+    if (!Array.isArray(parsedTrades)) return "[]";
+
+    return JSON.stringify(parsedTrades.map((trade) => normalizeTrade(trade)));
+  } catch (error) {
+    console.error("Error creating trades snapshot:", error);
+    return "[]";
+  }
 }
 
 // Snapshot مخصوص رندر سمت سرور
-export function getTradesServerSnapshot(): null {
-  return null;
+export function getTradesServerSnapshot(): string {
+  return "[]";
 }

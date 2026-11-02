@@ -17,11 +17,7 @@ export function useTrades() {
     getTradesServerSnapshot,
   );
 
-  const trades: Trade[] = tradesSnapshot
-    ? (JSON.parse(tradesSnapshot) as Trade[])
-    : [];
-
-  const isLoading = tradesSnapshot === null;
+  const trades: Trade[] = JSON.parse(tradesSnapshot);
 
   const createTrade = (trade: Trade) => {
     addTrade(trade);
@@ -33,7 +29,7 @@ export function useTrades() {
 
   return {
     trades,
-    isLoading,
+    isLoading: false,
     createTrade,
     removeTrade,
   };
