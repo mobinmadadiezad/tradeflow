@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TradeFlow 📈
 
-## Getting Started
+**TradeFlow** یک ابزار مدیریت و ثبت معاملات است که با هدف ایجاد نظم، افزایش انضباط معاملاتی و کمک به بهبود عملکرد تریدرها توسعه داده می‌شود.
 
-First, run the development server:
+## 🎯 چرا داشتن پلن و چک‌لیست معاملاتی مهم است؟
+
+در بازارهای مالی، هر تصمیم عجولانه می‌تواند به ضرر منجر شود. ورود به معامله بدون برنامه مشخص، نداشتن حد ضرر و تصمیم‌گیری بر اساس احساسات از جمله عواملی هستند که می‌توانند عملکرد یک تریدر را تحت تأثیر قرار دهند.
+
+داشتن یک **پلن معاملاتی (Trading Plan)** مشخص می‌کند چه زمانی، تحت چه شرایطی و با چه میزان ریسکی وارد معامله شویم.
+
+در کنار آن، یک **چک‌لیست معاملاتی (Trading Checklist)** کمک می‌کند پیش از ورود به هر معامله، شرایط بازار و قوانین شخصی خود را بررسی کنیم.
+
+هدف این دو ابزار ساده اما مهم است:
+
+- کاهش تصمیم‌گیری‌های احساسی
+- جلوگیری از ورودهای عجولانه و بدون تأیید
+- مدیریت بهتر ریسک و سرمایه
+- افزایش پایبندی به استراتژی معاملاتی
+- شناسایی اشتباهات و بهبود عملکرد در طول زمان
+
+**در TradeFlow تلاش می‌کنیم قبل از هر معامله، به‌جای تصمیم‌گیری احساسی، طبق یک برنامه مشخص عمل کنیم.**
+
+---
+
+## 🚀 درباره TradeFlow
+
+TradeFlow یک داشبورد شخصی برای مدیریت فرآیند معاملاتی است که به تریدر کمک می‌کند پلن معاملاتی خود را تنظیم کند، پیش از ورود به معامله قوانینش را بررسی کند و پس از پایان معامله، نتیجه را ثبت و تحلیل کند.
+
+این برنامه با تمرکز بر سادگی، کاربردی بودن و مدیریت بهتر معاملات طراحی شده است.
+
+هدف اصلی TradeFlow پیش‌بینی بازار یا ارائه سیگنال معاملاتی نیست؛ بلکه کمک به تریدر برای داشتن یک فرآیند معاملاتی منظم و قابل ارزیابی است.
+
+---
+
+## ✨ قابلیت‌ها
+
+### 📋 مدیریت پلن معاملاتی
+- تنظیم نماد معاملاتی
+- تعیین تایم‌فریم تحلیل و ورود
+- مشخص کردن درصد ریسک هر معامله
+- تعیین حداکثر تعداد معاملات روزانه
+- تعیین حداقل نسبت ریسک به ریوارد (Risk/Reward)
+- تنظیم قوانین شخصی معاملاتی
+
+### ✅ چک‌لیست معاملاتی
+- بررسی شرایط لازم پیش از ورود به معامله
+- ارزیابی انطباق موقعیت معاملاتی با پلن
+- کمک به جلوگیری از ورودهای خارج از استراتژی
+
+### ⚠️ مدیریت ریسک
+- محاسبه و بررسی ریسک معاملات
+- کمک به تعیین حجم مناسب معامله
+- نمایش محدودیت‌ها و هشدارهای مرتبط با قوانین معاملاتی
+
+### 📝 ژورنال معاملاتی
+- ثبت معاملات انجام‌شده
+- ثبت قیمت ورود و خروج
+- ثبت حد ضرر و حد سود
+- ثبت حجم معامله
+- ثبت سود و زیان
+- مشخص کردن نتیجه معامله (برد، باخت یا سربه‌سر)
+- ثبت یادداشت و میزان پایبندی به پلن
+- حذف معاملات ثبت‌شده
+
+### 📊 تحلیل عملکرد
+- نمایش نرخ برد (Win Rate)
+- محاسبه سود و زیان خالص
+- نمایش تعداد معاملات سودده و ضررده
+- محاسبه میانگین نسبت ریسک به ریوارد
+- شناسایی بهترین و بدترین روز معاملاتی
+- نمایش نمودار عملکرد معاملات
+- فیلتر آمار بر اساس بازه زمانی
+
+---
+
+## 🛠️ تکنولوژی‌های استفاده‌شده
+
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **Redux Toolkit**
+- **Lucide React**
+- **LocalStorage**
+
+---
+
+## ⚙️ نصب و اجرا
+
+ابتدا مخزن پروژه را دریافت کنید:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/tradeflow.git
+```
+
+وارد پوشه پروژه شوید:
+
+```bash
+cd tradeflow
+```
+
+وابستگی‌ها را نصب کنید:
+
+```bash
+npm install
+```
+
+پروژه را در محیط توسعه اجرا کنید:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+سپس آدرس زیر را در مرورگر باز کنید:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔄 وضعیت توسعه
 
-To learn more about Next.js, take a look at the following resources:
+TradeFlow در حال توسعه است و قابلیت‌های آن به‌مرور تکمیل و بهبود پیدا می‌کنند.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+در حال حاضر تمرکز توسعه روی بهبود تجربه کاربری، مدیریت معاملات، ثبت دقیق اطلاعات و تحلیل عملکرد معاملاتی است.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### برنامه‌های پیش‌رو
+- تکمیل و بهبود چک‌لیست معاملاتی
+- بهبود ابزارهای مدیریت ریسک و محاسبه حجم
+- توسعه بخش تحلیل عملکرد
+- بهبود رابط کاربری و تجربه کاربری
+- رفع خطاها و بهینه‌سازی عملکرد برنامه
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚠️ سلب مسئولیت
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TradeFlow صرفاً یک ابزار کمکی برای مدیریت و ثبت معاملات است و هیچ‌گونه سیگنال خرید یا فروش ارائه نمی‌دهد.
+
+اطلاعات و محاسبات این برنامه نباید به‌عنوان توصیه مالی یا تضمین کسب سود در نظر گرفته شوند. مسئولیت تصمیم‌گیری و اجرای معاملات بر عهده خود کاربر است.
+
+---
+
+**TradeFlow — Trade with a Plan, Not with Emotions.** 📈
+
+*Currently under development.*
